@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven' // Manage jenkins -> Tools -> scroll down till Maven installations -> add maven 'Maven'
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/HodaTouny/Jenkins-Pipeline-Showcase.git', branch: 'main'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn clean compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+        stage('Dummy Deploy') {
+            steps {
+                echo 'This is a dummy deployment stage. No real deployment is happening.'
+            }
+        }
+    }
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+            cleanWs()
+        }
+    }
+}
