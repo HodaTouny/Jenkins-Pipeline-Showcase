@@ -17,6 +17,7 @@ public class LibraryTest {
         assertEquals("Effective Java", library.getBooks().get(0).getTitle());
     }
 
+
     @Test
     public void testFindBookByTitle() {
         Library library = new Library();
@@ -27,6 +28,7 @@ public class LibraryTest {
         assertEquals("Clean Code", foundBook.getTitle());
     }
 
+
     @Test
     public void testFindBookByTitleNotFound() {
         Library library = new Library();
@@ -35,6 +37,7 @@ public class LibraryTest {
         assertNull(foundBook);
     }
 
+    
     @Test
     public void testAddBookInvalid() {
         Library library = new Library();
